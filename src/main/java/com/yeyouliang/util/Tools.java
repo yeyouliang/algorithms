@@ -398,12 +398,19 @@ public class Tools {
             Dui zhe = new Dui(ld, rd, in[i]);
             dd[i] = zhe;
         }
+        for (int i = dd.length-1; i >=0 ; i--) {
+            System.out.println(dd[i]);
+            duip(dd[i]);
+        }
+        for (int i = 0; i < dd.length; i++) {
+            System.out.print("|"+(i+1)+"|"+dd[i]+"|"+(i+1)+"|");
+        }
     }
 
     public void duip(Dui dui) {
         Dui left = dui.getLeft();
         Dui right = dui.getRight();
-        if (null != right.getValue()) {
+        if (null != right) {
             if (right.getValue() < dui.getValue()) {
                 Integer fu = right.getValue();
                 right.setValue(dui.getValue());
@@ -414,9 +421,10 @@ public class Tools {
                     duip(left);
                 } else {
                     dui.setValue(fu);
+                    duip(right);
                 }
             }
-        } else if (null != left.getValue() && left.getValue() < dui.getValue()) {
+        } else if (null != left && left.getValue() < dui.getValue()) {
             Integer le = left.getValue();
             left.setValue(dui.getValue());
             dui.setValue(le);
