@@ -15,7 +15,7 @@ import java.util.*;
  * Created by YEYOULIANG on 2020/4/28.
  */
 public class Tools {
-    public static Integer[] getRandomInt(int end, int count) {
+    public static Integer[] getRandomInt(int end, int count) {//若end<count，程序将无限循环。
         Random random = new Random();
         Set<Integer> integers = new HashSet<>();
         do {
@@ -383,7 +383,8 @@ public class Tools {
 
     @Test
     public void duiPai() {
-        Integer[] in = {5, 1, 13, 3, 16, 7, 10, 14, 6, 9, 4};
+        //Integer[] in = {5, 1, 13, 3, 16, 7, 10, 14, 6, 9, 4};
+        Integer[] in = getRandomInt(10000, 33);
         int len = in.length;
         Dui[] dd = new Dui[len];
         for (int i = len - 1; i >= 0; i--) {
@@ -398,31 +399,55 @@ public class Tools {
             Dui zhe = new Dui(ld, rd, in[i]);
             dd[i] = zhe;
         }
-        for (int i = dd.length-1; i >=0 ; i--) {
+        for (int i = dd.length - 1; i >= 0; i--) {
             System.out.println(dd[i]);
             duip(dd[i]);
         }
         for (int i = 0; i < dd.length; i++) {
-            System.out.print("|"+(i+1)+"|"+dd[i]+"|"+(i+1)+"|");
+            System.out.print(dd[i] + "||");
+        }
+        isMinHeap(dd[0], "");
+    }
+
+    public void isMinHeap(Dui dd, String s) {//根据堆的根节点判断此堆是否符合最小堆的定义。
+        if (dd.getLeft() == null && dd.getRight() == null) {
+            s += "," + dd.getValue();
+            System.out.println(s);
+            return;
+        }
+        if (dd.getLeft() != null) {
+            if (dd.getLeft().getValue() > dd.getValue()) {
+                s += "," + dd.getValue();
+                isMinHeap(dd.getLeft(), s);
+            } else {
+                System.out.println("fail");
+            }
+        }
+        if (dd.getRight() != null) {
+            if (dd.getRight().getValue() > dd.getValue()) {
+                s += "," + dd.getValue();
+                isMinHeap(dd.getRight(), s);
+            } else {
+                System.out.println("fail");
+            }
         }
     }
 
-    public void duip(Dui dui) {
+    public void duip(Dui dui) {//根据堆的定义对此堆进行比较和交换。
         Dui left = dui.getLeft();
         Dui right = dui.getRight();
         if (null != right) {
             if (right.getValue() < dui.getValue()) {
                 Integer fu = right.getValue();
                 right.setValue(dui.getValue());
-                if (left.getValue() < fu) {
-                    Integer zuo = left.getValue();
-                    left.setValue(fu);
-                    dui.setValue(zuo);
-                    duip(left);
-                } else {
-                    dui.setValue(fu);
-                    duip(right);
-                }
+                dui.setValue(fu);
+                duip(right);
+            }
+            if (left.getValue() < dui.getValue()) {
+                Integer zuo = left.getValue();
+                left.setValue(dui.getValue());
+                dui.setValue(zuo);
+                duip(left);
             }
         } else if (null != left && left.getValue() < dui.getValue()) {
             Integer le = left.getValue();
