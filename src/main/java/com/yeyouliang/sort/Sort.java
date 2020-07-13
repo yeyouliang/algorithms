@@ -61,9 +61,9 @@ public class Sort {
     @Test
     public void fastSort() {//快速排序
         Integer[] shu = Tools.getRandomInt(50, 10);
-        System.out.println(" 原始数列->"+Arrays.toString(shu));
-        kuaisu(shu, 0, shu.length-1);
-        System.out.println("最终结果："+Arrays.toString(shu));
+        System.out.println(" 原始数列->" + Arrays.toString(shu));
+        kuaisu(shu, 0, shu.length - 1);
+        System.out.println("最终结果：" + Arrays.toString(shu));
     }
 
     public void kuaisu(Integer[] ins, int start, int end) {//总是传入原始数组，start和end指定此次循环要操作的数据范围。每次循环都确定至少一个数字的最终位置。
@@ -100,12 +100,33 @@ public class Sort {
         }
         //对修改过的原始数组进行循环操作
         if (leftCount > 1) {//少于2可知其位置已最终确定，所以不再循环。
-            System.out.println("leftLoop ："+Arrays.toString(ins));
-            kuaisu(ins, start, (start + leftCount)-1);//因为加上了数量，所以要减1
+            System.out.println("leftLoop ：" + Arrays.toString(ins));
+            kuaisu(ins, start, (start + leftCount) - 1);//因为加上了数量，所以要减1
         }
         if (rightCount > 1) {//少于2可知其位置已最终确定，所以不再循环。
-            System.out.println("rightLoop："+Arrays.toString(ins));
-            kuaisu(ins, start + leftCount + 1, ((start + leftCount + 1) + rightCount)-1);//因为加上了数量，所以要减1
+            System.out.println("rightLoop：" + Arrays.toString(ins));
+            kuaisu(ins, start + leftCount + 1, ((start + leftCount + 1) + rightCount) - 1);//因为加上了数量，所以要减1
+        }
+    }
+
+    @Test
+    public void xuanze() {//选择排序
+        Integer[] shu = Tools.getRandomInt(50, 10);
+        System.out.println(Arrays.toString(shu) + " <-原始数列");
+        for (int i = 0; i < shu.length - 1; i++) {//0...8
+            int minIndex = i;
+            for (int j = i + 1; j < shu.length; j++) {//1...9
+                if (shu[minIndex] > shu[j]) {
+                    minIndex = j;
+                }
+            }
+            if (i != minIndex) {
+                int tmp;
+                tmp = shu[minIndex];
+                shu[minIndex] = shu[i];
+                shu[i] = tmp;
+            }
+            System.out.println(Arrays.toString(shu) + " <-第" + (i + 1) + "次排序结果");
         }
     }
 }
