@@ -1,6 +1,5 @@
 package com.yeyouliang.binaryTree;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,26 +23,81 @@ public class Dump {
 
     /**
      * 根据整数数组构建二叉树
-     * */
+     */
     public static void build(int num) {
-        while (true) {
-            for (TreeNode treeNode : list) {
-                TreeNode left = treeNode.getLeft();
-                TreeNode right = treeNode.getRight();
-                if (left == null) {
-                    TreeNode le = new TreeNode(num, null, null);
-                    treeNode.setLeft(le);
-                    list.add(le);
-                    return;
-                }
-                if (right == null) {
-                    TreeNode ri = new TreeNode(num, null, null);
-                    treeNode.setRight(ri);
-                    list.add(ri);
-                    return;
-                }
+        for (TreeNode treeNode : list) {
+            TreeNode left = treeNode.getLeft();
+            TreeNode right = treeNode.getRight();
+            boolean has = true;
+            TreeNode newTN = new TreeNode(num, null, null);
+            if (left == null) {
+                treeNode.setLeft(newTN);
+            } else if (right == null) {
+                treeNode.setRight(newTN);
+            } else {
+                has = false;
             }
-            return;
+            if (has) {
+                list.add(newTN);
+                mm(list.get(0));//维持小根堆状态
+                return;
+            }
+        }
+    }
+
+    /**
+     * 维持小根堆状态
+     */
+    public static void mm(TreeNode root) {
+        List<TreeNode> tmp = new ArrayList<>();
+        tmp.add(root);
+        min(root, tmp);
+    }
+
+    /**
+     * 维持小根堆状态
+     */
+    public static void min(TreeNode root, List<TreeNode> list) {
+        TreeNode left = root.getLeft();
+        TreeNode right = root.getRight();
+        if (left != null) {
+            if (list.get(list.size() - 1).getValue() > left.getValue()) {
+                list.add(left);
+                int length = list.size();
+                for (int i = length - 2; i >= 0; i--) {
+                    TreeNode now = list.get(i);
+                    TreeNode last = list.get(i + 1);
+                    if (now.getValue() > last.getValue()) {
+                        int tmp = now.getValue();
+                        now.setValue(last.getValue());
+                        last.setValue(tmp);
+                    }
+                }
+                return;
+            } else {
+                List<TreeNode> li = new ArrayList<>(list);
+                li.add(left);
+                min(left, li);
+            }
+        }
+        if (right != null) {
+            if (list.get(list.size() - 1).getValue() > right.getValue()) {
+                list.add(right);
+                int length = list.size();
+                for (int i = length - 2; i >= 0; i--) {
+                    TreeNode now = list.get(i);
+                    TreeNode last = list.get(i + 1);
+                    if (now.getValue() > last.getValue()) {
+                        int tmp = now.getValue();
+                        now.setValue(last.getValue());
+                        last.setValue(tmp);
+                    }
+                }
+            } else {
+                List<TreeNode> li = new ArrayList<>(list);
+                li.add(right);
+                min(right, li);
+            }
         }
     }
 
