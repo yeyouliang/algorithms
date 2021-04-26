@@ -46,6 +46,35 @@ public class Dump {
     }
 
     /**
+     * 根据整数数组构建二叉树
+     * 利用完全二叉树在数组中存储的特性
+     */
+    public static void buildPlus() {
+        int[] ints = {0, 3, 1, 5, 6, 4, 2, 7, 8};
+        int length = ints.length;
+        List<TreeNode> list = new ArrayList<>();
+        list.add(new TreeNode(ints[0], null, null));
+        for (int i = 0; i < length; i++) {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            TreeNode tn = list.get(i);
+            if (left > length - 1) {
+                break;
+            }
+            TreeNode le = new TreeNode(ints[left], null, null);
+            tn.setLeft(le);
+            list.add(le);
+            if (right > length - 1) {
+                break;
+            }
+            TreeNode ri = new TreeNode(ints[right], null, null);
+            tn.setRight(ri);
+            list.add(ri);
+        }
+        System.out.println(list.size());
+    }
+
+    /**
      * 维持小根堆状态
      */
     public static void mm(TreeNode root) {
