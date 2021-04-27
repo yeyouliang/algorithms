@@ -3,7 +3,11 @@ package com.yeyouliang.sort;
 import com.yeyouliang.util.Tools;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by YEYOULIANG on 2020/4/28.
@@ -128,5 +132,68 @@ public class Sort {
             }
             System.out.println(Arrays.toString(shu) + " <-第" + (i + 1) + "次排序结果");
         }
+    }
+
+    /**
+     * 归并排序
+     * */
+    @Test
+    public void guibing(){
+        List<List<Integer>> list = Stream.of(2, 7, 1, 3, 5, 0, 6, 9, 8, 4).map(integer -> {
+            List<Integer> ins = new ArrayList<>();
+            ins.add(integer);
+            return ins;
+        }).collect(Collectors.toList());
+        List<Integer> gb = gb(list);
+        for (Integer integer : gb) {
+            System.out.print(integer + ",");
+        }
+        System.out.println();
+    }
+
+    public static List<Integer> gb(List<List<Integer>> list) {
+        int length = list.size();
+        if (length == 1) {
+            return list.get(0);
+        }
+        List<List<Integer>> li = new ArrayList<>();
+        int start = 0;
+        while (start < length) {
+            List<Integer> result = new ArrayList<>();
+            List<Integer> one = list.get(start);
+            if (start + 1 == length) {
+                li.add(one);
+                break;
+            }
+            List<Integer> two = list.get(start + 1);
+            int o = one.size();
+            int t = two.size();
+            while (true) {
+                if (o == 0) {
+                    if (t != 0) {
+                        result.addAll(two);
+                    }
+                    break;
+                }
+                if (t == 0) {
+                    result.addAll(one);
+                    break;
+                }
+                Integer a = one.get(0);
+                Integer b = two.get(0);
+                if (a > b) {
+                    result.add(b);
+                    two.remove(b);
+                    t--;
+                } else {
+                    result.add(a);
+                    one.remove(a);
+                    o--;
+                }
+            }
+            li.add(result);
+            start += 2;
+        }
+        return gb(li);
     }
 }
