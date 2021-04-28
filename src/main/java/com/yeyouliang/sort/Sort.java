@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -195,5 +196,93 @@ public class Sort {
             start += 2;
         }
         return gb(li);
+    }
+
+    /**
+     * 基数排序
+     * */
+    public static void jishu() {
+        //List<Integer> collect = Stream.of(11, 12, 22, 51, 33, 13, 21, 55, 88, 18).collect(Collectors.toList());
+        List<Integer> collect = Stream.of(16, 19, 107, 27, 0, 20, 10, 22, 100, 6).collect(Collectors.toList());
+        List<Integer> zero = new ArrayList<>();
+        List<Integer> one = new ArrayList<>();
+        List<Integer> two = new ArrayList<>();
+        List<Integer> three = new ArrayList<>();
+        List<Integer> four = new ArrayList<>();
+        List<Integer> five = new ArrayList<>();
+        List<Integer> six = new ArrayList<>();
+        List<Integer> serven = new ArrayList<>();
+        List<Integer> eight = new ArrayList<>();
+        List<Integer> nine = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+        int index = 0;
+        int max = String.valueOf(collect.get(0)).length();
+        while (index < max) {
+            List<Integer> filter = new ArrayList<>();
+            for (Integer integer : collect) {
+                String si = String.valueOf(integer);
+                int length=si.length();
+                max = Math.max(max, length);
+                switch (si.substring(length - 1 - index, length - index)) {
+                    case "0":
+                        zero.add(integer);
+                        break;
+                    case "1":
+                        one.add(integer);
+                        break;
+                    case "2":
+                        two.add(integer);
+                        break;
+                    case "3":
+                        three.add(integer);
+                        break;
+                    case "4":
+                        four.add(integer);
+                        break;
+                    case "5":
+                        five.add(integer);
+                        break;
+                    case "6":
+                        six.add(integer);
+                        break;
+                    case "7":
+                        serven.add(integer);
+                        break;
+                    case "8":
+                        eight.add(integer);
+                        break;
+                    case "9":
+                        nine.add(integer);
+                        break;
+                }
+            }
+            js(result, index + 1, zero, filter);
+            js(result, index + 1, one, filter);
+            js(result, index + 1, two, filter);
+            js(result, index + 1, three, filter);
+            js(result, index + 1, four, filter);
+            js(result, index + 1, five, filter);
+            js(result, index + 1, six, filter);
+            js(result, index + 1, serven, filter);
+            js(result, index + 1, eight, filter);
+            js(result, index + 1, nine, filter);
+            collect = filter;
+            index++;
+        }
+        System.out.println(result);
+    }
+
+    public static void js(List<Integer> result, int len, List<Integer> target, List<Integer> filter) {
+        Iterator<Integer> iterator = target.iterator();
+        while (iterator.hasNext()) {
+            Integer integer = iterator.next();
+            if (String.valueOf(integer).length() == len) {
+                result.add(integer);
+                iterator.remove();
+            } else {
+                filter.add(integer);
+            }
+        }
+        target.clear();
     }
 }
