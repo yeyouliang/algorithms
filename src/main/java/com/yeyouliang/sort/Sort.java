@@ -1,5 +1,6 @@
 package com.yeyouliang.sort;
 
+import com.yeyouliang.binaryTree.TreeNode;
 import com.yeyouliang.util.Tools;
 import org.junit.Test;
 
@@ -272,6 +273,9 @@ public class Sort {
         System.out.println(result);
     }
 
+    /**
+     * 堆排序
+     * */
     public static void js(List<Integer> result, int len, List<Integer> target, List<Integer> filter) {
         Iterator<Integer> iterator = target.iterator();
         while (iterator.hasNext()) {
@@ -284,5 +288,32 @@ public class Sort {
             }
         }
         target.clear();
+    }
+
+    public static void heap(){
+        List<Integer>list = Stream.of(2, 7, 1, 3, 5, 0, 6, 9, 8, 4).collect(Collectors.toList());
+        TreeNode root=new TreeNode(list.get(0),null,null);
+        for (Integer integer : list) {
+            buildBinaryTree(root,integer);
+        }
+        //二叉树的中序遍历
+    }
+
+    public static void buildBinaryTree(TreeNode root,int leafage){
+        TreeNode left=root.getLeft();
+        TreeNode right=root.getRight();
+        if (root.getValue()>leafage){
+            if (left!=null){
+                buildBinaryTree(left,leafage);
+            }else {
+                root.setLeft(new TreeNode(leafage,null,null));
+            }
+        }else if (root.getValue()<leafage){
+            if (right!=null){
+                buildBinaryTree(right,leafage);
+            }else {
+                root.setRight(new TreeNode(leafage,null,null));
+            }
+        }
     }
 }

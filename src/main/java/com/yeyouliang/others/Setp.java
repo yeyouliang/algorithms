@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Setp {
     /**
-     * 
+     * 有一个楼梯，上面的人下楼，下面的人上楼，同时开始。每人跨越的步数最小是1，最大是3。求有多少种两人最终同时停在同一级的情况？
      * */
     public static void main(String[] args) {
         int[] count = new int[1];
