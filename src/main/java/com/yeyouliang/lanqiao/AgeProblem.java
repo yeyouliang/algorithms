@@ -19,7 +19,18 @@ public class AgeProblem {
             int d = aa % ii;
             if (b == 0 && d == 0 && c == 2) {
                 System.out.println(i);
-                return;
+                break;
+            }
+        }
+
+        for (int i = 1; i < 100; i++) {
+            int a = i * 2;
+            int b = i + 20;
+            int c = a + 20;
+            int d = c * 2 % 3;
+            int e = c * 2 / 3;
+            if (d == 0 && b == e) {
+                System.out.println(b);
             }
         }
     }
