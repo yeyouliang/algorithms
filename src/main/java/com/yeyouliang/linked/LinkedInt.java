@@ -41,4 +41,14 @@ public class LinkedInt {
                 "value=" + value +
                 '}';
     }
+
+    public static LinkedInt init(int[] ints) {
+        LinkedInt linkedInt = new LinkedInt(ints[ints.length - 1]);
+        LinkedInt next = linkedInt;
+        for (int i = ints.length - 2; i >= 0; i--) {
+            next = new LinkedInt(ints[i], next);
+        }
+        linkedInt.setNext(next);
+        return next;
+    }
 }
