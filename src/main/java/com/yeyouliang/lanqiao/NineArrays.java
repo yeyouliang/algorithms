@@ -7,7 +7,7 @@ public class NineArrays {
     /**
      * 九数组分数
      * 1,2,3...9 这九个数字组成一个分数，其值恰好为1/3，如何组法？
-     * */
+     */
     public static void main(String[] args) {
         int num = 1;
         while (num < 100_000) {
@@ -20,7 +20,6 @@ public class NineArrays {
                 StringBuilder sb = new StringBuilder();
                 sb.append(up);
                 sb.append(down);
-                System.out.println(sb.toString());
                 for (String s : sb.toString().split("")) {
                     int i = Integer.parseInt(s);
                     if (ints[i - 1] == 1) {
@@ -32,10 +31,9 @@ public class NineArrays {
                 }
                 if (falg) {
                     System.out.println(up + "," + down);
-                    break;
                 }
             }
-            num += 3;
+            num++;
         }
     }
 }
