@@ -316,4 +316,36 @@ public class Sort {
             }
         }
     }
+
+    /**
+     * 希尔排序
+     */
+    public static void main(String[] args) {
+        int[] ints = {3,1,3,4,2};
+        int half = ints.length / 2;
+        while (half != 1) {
+            int start = 0;
+            int end = start + half;
+            while (end < ints.length) {
+                if (ints[start] > ints[end]) {
+                    int temp = ints[start];
+                    ints[start] = ints[end];
+                    ints[end] = temp;
+                }
+                start++;
+                end = start + half;
+            }
+            half /= 2;
+        }
+        for (int i = 1; i < ints.length; i++) {
+            int index = i;
+            while (index > 0 && ints[index - 1] > ints[index]) {
+                int tmp = ints[index];
+                ints[index] = ints[index - 1];
+                ints[index - 1] = tmp;
+                index--;
+            }
+        }
+        System.out.println(Arrays.toString(ints));
+    }
 }
