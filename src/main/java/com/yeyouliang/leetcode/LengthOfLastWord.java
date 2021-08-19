@@ -10,16 +10,22 @@ public class LengthOfLastWord {
     }
 
     public static int lengthOfLastWord(String s) {
-        int len = 0;
+        boolean falg = false;
+        int length = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
-            if (s.substring(i, i + 1).equals(" ")) {
-                if (len != 0) {
+            if (falg) {
+                if (s.charAt(i) == 32) {
                     break;
+                }else {
+                    length++;
                 }
             } else {
-                len++;
+                if (s.charAt(i) != 32) {
+                    falg = true;
+                    length++;
+                }
             }
         }
-        return len;
+        return length;
     }
 }
