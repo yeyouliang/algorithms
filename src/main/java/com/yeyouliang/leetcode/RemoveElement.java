@@ -6,31 +6,49 @@ import java.util.Arrays;
  * Created by YYL on 2021/2/2 : 20:44.
  */
 public class RemoveElement {
-    public static void main(String[] args) {//​LeetCode刷题实战27：移除元素
-        int target = 2;
-        int[] ints = {0, 1, 2, 2, 3, 0, 4, 2};
-        int length = ints.length;
-        for (int i = length - 1; i >= 0; i--) {
-            if (target == ints[i]) {
-                if (i != length - 1) {
-                    for (int j = i + 1; j < length; j++) {
-                        ints[j - 1] = ints[j];
-                    }
-                    ints[length - 1] = target;
+    /**
+     * 27. 移除元素
+     * */
+    public static void main(String[] args) {
+        int[][][] ints = {
+                {{0, 1, 2, 2, 3, 0, 4, 2}, {2}},
+                {{0, 1, 2, 2, 3, 0, 4, 3}, {2}},
+                {{0, 1, 2, 2, 3, 0, 4, 3}, {0}},
+                {{0, 1, 2, 2, 3, 0, 4, 3}, {1}},
+                {{3, 2, 2, 3}, {3}},
+                {{3}, {3}},
+                {{3}, {1}}
+        };
+        for (int[][] anInt : ints) {
+            System.out.println(Arrays.toString(anInt[0]) + ":" + removeElement(anInt[0], anInt[1][0]));
+        }
+    }
+
+    private static int removeElement(int[] nums, int val) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (val == nums[i]) {
+                if (i != nums.length - 1) {
+                    System.arraycopy(nums, i + 1, nums, i + 1 - 1, nums.length - (i + 1));
+                    nums[nums.length - 1] = val;
                 }
             }
         }
-        System.out.println(Arrays.toString(ints));
-        if (ints[length - 1] == target) {
-            ints[length - 1] = 1;
-            for (int i = length - 2; i >= 0; i--) {
-                if (ints[i] == target) {
-                    ints[length - 1] += 1;
+        System.out.println(Arrays.toString(nums));
+        if (nums[nums.length - 1] == val) {
+            nums[nums.length - 1] = 1;
+            for (int i = nums.length - 2; i >= 0; i--) {
+                if (nums[i] == val) {
+                    nums[nums.length - 1] += 1;
+                } else {
+                    break;
                 }
             }
-            System.out.println(length - ints[length - 1]);
+            return nums.length - nums[nums.length - 1];
         } else {
-            System.out.println(length);
+            return nums.length;
         }
     }
 }
