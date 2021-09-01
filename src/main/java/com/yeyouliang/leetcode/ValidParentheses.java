@@ -6,10 +6,18 @@ import java.util.Stack;
  * Created by YYL on 2021/2/25 : 22:41.
  */
 public class ValidParentheses {
-    private static Stack<String> stack = new Stack<>();
-
+    /**
+     * 20. 有效的括号
+     * */
     public static void main(String[] args) {
-        String s = "()()(()(()))";
+        String[] strings = {"}}"};
+        for (String string : strings) {
+            System.out.println(string + ":" + isValid(string));
+        }
+    }
+
+    private static boolean isValid(String s) {
+        Stack<String> stack = new Stack<>();
         int length = s.length();
         for (int i = 0; i < length; i++) {
             String str = s.substring(i, i + 1);
@@ -17,32 +25,29 @@ public class ValidParentheses {
                 stack.push(str);
             } else {
                 if (stack.empty()) {
-                    System.out.println("error:" + i);
-                    return;
+                    return false;
                 }
                 String peek = stack.peek();
                 switch (str) {
                     case ")":
                         if (!peek.equals("(")) {
-                            System.out.println("error:" + i);
-                            return;
+                            return false;
                         }
                         break;
                     case "]":
                         if (!peek.equals("[")) {
-                            System.out.println("error:" + i);
-                            return;
+                            return false;
                         }
                         break;
                     case "}":
                         if (!peek.equals("{")) {
-                            System.out.println("error:" + i);
-                            return;
+                            return false;
                         }
                         break;
                 }
                 stack.pop();
             }
         }
+        return stack.empty();
     }
 }
