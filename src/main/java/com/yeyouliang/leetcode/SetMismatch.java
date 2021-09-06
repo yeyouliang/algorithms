@@ -10,27 +10,48 @@ public class SetMismatch {
      * 645. 错误的集合
      */
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(findErrorNums(new int[]{1, 2, 2, 4})));
+        int[][] ints = {
+                {1, 1},
+                {2, 2},
+                {2, 2, 3},
+                {1, 2, 2, 4},
+                {1, 2, 4, 2},
+                {1, 4, 2, 2},
+                {2, 4, 2, 1},
+                {2, 4, 1, 2},
+                {2, 2, 4, 1},
+                {2, 2, 1, 4},
+                {2, 1, 2, 4},
+                {2, 1, 4, 2},
+                {4, 2, 2, 1},
+                {4, 2, 1, 2},
+                {4, 1, 2, 2},
+                {4, 1, 2, 3, 4},
+                {4, 1, 2, 2, 5},
+        };
+        for (int[] anInt : ints) {
+            System.out.println(Arrays.toString(anInt) + ":" + Arrays.toString(findErrorNums(anInt)));
+        }
     }
 
     private static int[] findErrorNums(int[] nums) {
-        int[] ints = new int[2];
-        for (int i = 1; i < nums.length; i++) {
-            int index = i;
-            while (index > 0 && nums[index - 1] > nums[index]) {
-                int tmp = nums[index];
-                nums[index] = nums[index - 1];
-                nums[index - 1] = tmp;
-                index--;
+        int[] ints = new int[nums.length];
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int c = ints[nums[i] - 1];
+            if (c == 0) {
+                ints[nums[i] - 1] = nums[i];
+            } else {
+                a = nums[i];
             }
         }
-        for (int i = 0; i < nums.length - 1; i++) {
-            if (nums[i] == nums[i + 1]) {
-                ints[0] = nums[i];
-                ints[1] = nums[i] + 1;
+        for (int i = 0; i < ints.length; i++) {
+            if (ints[i] == 0) {
+                b = i + 1;
                 break;
             }
         }
-        return ints;
+        return new int[]{a,b};
     }
 }
