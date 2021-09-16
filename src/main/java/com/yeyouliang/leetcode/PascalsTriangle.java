@@ -8,39 +8,36 @@ import java.util.List;
  */
 public class PascalsTriangle {
     /**
-     * 输入: 5
-     * 输出:
-     * [
-     * [1],
-     * [1,1],
-     * [1,2,1],
-     * [1,3,3,1],
-     * [1,4,6,4,1]
-     * ]
-     */
+     * 118. 杨辉三角
+     * */
     public static void main(String[] args) {
-        List<List<Integer>> ill = generate(10);
-        for (List<Integer> il : ill) {
-            for (Integer i : il) {
-                System.out.print(i + ",");
-            }
-            System.out.println();
-        }
+        System.out.println(generate(3));
     }
 
-    public static List<List<Integer>> generate(int numRows) {
+    private static List<List<Integer>> generate(int numRows) {
         List<List<Integer>> lli = new ArrayList<>();
-        for (int i = 1; i <= numRows; i++) {
-            List<Integer> integers = new ArrayList<>();
-            for (int j = 0; j < i; j++) {
-                if (i < 3 || j == 0 || j == i - 1) {
-                    integers.add(1);
-                } else {
-                    List<Integer> last = lli.get(lli.size() - 1);
-                    integers.add(last.get(j - 1) + last.get(j));
+        List<Integer> a = new ArrayList<>();
+        a.add(1);
+        lli.add(a);
+        List<Integer> b = new ArrayList<>();
+        b.add(1);
+        b.add(1);
+        if (numRows != 1) {
+            lli.add(b);
+            if (numRows != 2) {
+                while (numRows > 2) {
+                    List<Integer> list = lli.get(lli.size() - 1);
+                    List<Integer> newList = new ArrayList<>();
+                    newList.add(1);
+                    for (int i = 1; i < list.size(); i++) {
+                        int sum = list.get(i - 1) + list.get(i);
+                        newList.add(sum);
+                    }
+                    newList.add(1);
+                    lli.add(newList);
+                    numRows--;
                 }
             }
-            lli.add(integers);
         }
         return lli;
     }
