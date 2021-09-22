@@ -31,35 +31,17 @@ public class BinaryTreePostorderTraversal {
     }
 
     private static List<Integer> postorderTraversal(TreeNode root) {
-        List<TreeNode> a = new ArrayList<>();
-        List<TreeNode> b = new ArrayList<>();
+        List<Integer> a = new ArrayList<>();
+        List<Integer> b = new ArrayList<>();
+        List<Integer> c = new ArrayList<>();
         if (root != null) {
-            b.add(root);
-            while (true) {
-                int size = b.size();
-                for (TreeNode treeNode : b) {
-                    if (!a.contains(treeNode)) {
-                        a.add(treeNode);
-                        int index = b.indexOf(treeNode);
-                        List<TreeNode> c = new ArrayList<>(b);
-                        if (treeNode.right != null) {
-                            c.add(index, treeNode.right);
-                        }
-                        if (treeNode.left != null) {
-                            c.add(index, treeNode.left);
-                        }
-                        if (b.size() != c.size()) {
-                            b = c;
-                            break;
-                        }
-                    }
-                }
-                if (size == b.size()) {
-                    break;
-                }
-            }
+            b = postorderTraversal(root.left);
+            c = postorderTraversal(root.right);
+            a.add(root.val);
         }
-        return b.stream().map(treeNode -> (treeNode.val)).collect(Collectors.toList());
+        a.addAll(0,c);
+        a.addAll(0,b);
+        return a;
     }
 
     private static class TreeNode {
