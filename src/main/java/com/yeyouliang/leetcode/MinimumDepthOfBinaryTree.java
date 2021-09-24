@@ -6,14 +6,14 @@ package com.yeyouliang.leetcode;
 public class MinimumDepthOfBinaryTree {
     /**
      * 111. 二叉树的最小深度
-     * */
+     */
     public static void main(String[] args) {
-        TreeNode t15 = new TreeNode(15);
-        TreeNode t7 = new TreeNode(7);
-        TreeNode t9 = new TreeNode(9);
-        TreeNode t20 = new TreeNode(20, t15, t7);
-        TreeNode t3 = new TreeNode(3, t9, t20);
-        System.out.println(minDepth(t3));
+        TreeNode t6 = new TreeNode(6);
+        TreeNode t5 = new TreeNode(5, null, t6);
+        TreeNode t4 = new TreeNode(4, null, t5);
+        TreeNode t3 = new TreeNode(3, null, t4);
+        TreeNode t2 = new TreeNode(2, null, t3);
+        System.out.println(minDepth(t2));
     }
 
     private static int minDepth(TreeNode root) {
