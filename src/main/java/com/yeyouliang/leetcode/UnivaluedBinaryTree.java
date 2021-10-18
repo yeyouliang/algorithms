@@ -23,16 +23,15 @@ public class UnivaluedBinaryTree {
                 falg = true;
             } else {
                 if (left != null) {
-                    falg = root.val == left.val;
-                    falg = isUnivalTree(left) && falg;
+                    falg = root.val == left.val & isUnivalTree(left);
                 }
                 if (right != null) {
-                    falg = root.val == right.val && falg;
-                    falg = isUnivalTree(right) && falg;
+                    falg = root.val == right.val & isUnivalTree(right) && falg;
                 }
                 System.out.println(1);
             }
         }
+        System.out.println(2);
         return falg;
     }
 
