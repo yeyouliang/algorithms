@@ -6,7 +6,7 @@ package com.yeyouliang.leetcode;
 public class UnivaluedBinaryTree {
     public static void main(String[] args) {
         TreeNode f = new TreeNode(1);
-        TreeNode e = new TreeNode(1);
+        TreeNode e = new TreeNode(2);
         TreeNode d = new TreeNode(1);
         TreeNode c = new TreeNode(1, null, f);
         TreeNode b = new TreeNode(1, d, e);
@@ -23,10 +23,22 @@ public class UnivaluedBinaryTree {
                 falg = true;
             } else {
                 if (left != null) {
-                    falg = root.val == left.val & isUnivalTree(left);
+                    falg = root.val == left.val;
+                    if (falg){
+                        falg=isUnivalTree(left);
+                        System.out.println("aa"+falg);
+                    }
+                }else {
+                    falg=true;
                 }
                 if (right != null) {
-                    falg = root.val == right.val & isUnivalTree(right) && falg;
+                    if (falg){
+                        falg = root.val == right.val;
+                        if (falg){
+                            falg=isUnivalTree(right);
+                            System.out.println("bb"+falg);
+                        }
+                    }
                 }
                 System.out.println(1);
             }
