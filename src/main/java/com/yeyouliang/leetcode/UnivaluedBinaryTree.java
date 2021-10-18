@@ -4,9 +4,12 @@ package com.yeyouliang.leetcode;
  * Created by YYL on 2021/10/18 : 11:42.
  */
 public class UnivaluedBinaryTree {
+    /**
+     * 965. 单值二叉树
+     * */
     public static void main(String[] args) {
         TreeNode f = new TreeNode(1);
-        TreeNode e = new TreeNode(2);
+        TreeNode e = new TreeNode(1);
         TreeNode d = new TreeNode(1);
         TreeNode c = new TreeNode(1, null, f);
         TreeNode b = new TreeNode(1, d, e);
@@ -23,27 +26,15 @@ public class UnivaluedBinaryTree {
                 falg = true;
             } else {
                 if (left != null) {
-                    falg = root.val == left.val;
-                    if (falg){
-                        falg=isUnivalTree(left);
-                        System.out.println("aa"+falg);
-                    }
-                }else {
-                    falg=true;
+                    falg = root.val == left.val && isUnivalTree(left);
+                } else {
+                    falg = true;
                 }
-                if (right != null) {
-                    if (falg){
-                        falg = root.val == right.val;
-                        if (falg){
-                            falg=isUnivalTree(right);
-                            System.out.println("bb"+falg);
-                        }
-                    }
+                if (right != null && falg) {
+                    falg = root.val == right.val && isUnivalTree(right);
                 }
-                System.out.println(1);
             }
         }
-        System.out.println(2);
         return falg;
     }
 
