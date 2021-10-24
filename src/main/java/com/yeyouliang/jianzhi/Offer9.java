@@ -8,46 +8,46 @@ import java.util.Stack;
 public class Offer9 {
     /**
      * 剑指 Offer 09. 用两个栈实现队列
-     * */
+     */
     public static void main(String[] args) {
         CQueue cQueue = new CQueue();
-        /*cQueue.appendTail(3);
+        cQueue.appendTail(3);
         System.out.println(cQueue.deleteHead());
-        System.out.println(cQueue.deleteHead());*/
+        System.out.println(cQueue.deleteHead());
 
-        System.out.println(cQueue.deleteHead());
+        /*System.out.println(cQueue.deleteHead());
         cQueue.appendTail(5);
         cQueue.appendTail(2);
         System.out.println(cQueue.deleteHead());
-        System.out.println(cQueue.deleteHead());
+        System.out.println(cQueue.deleteHead());*/
     }
 
     private static class CQueue {
         private Stack<Integer> a;
+        private Stack<Integer> b;
 
-        public CQueue() {
+        CQueue() {
             a = new Stack<>();
+            b = new Stack<>();
         }
 
-        public void appendTail(int value) {
+        void appendTail(int value) {
+            if (!b.isEmpty()) {
+                while (!b.empty()) {
+                    a.push(b.pop());
+                }
+            }
             a.push(value);
         }
 
-        public int deleteHead() {
-            if (!a.empty()) {
-                if (a.size() == 1) {
-                    return a.pop();
-                } else {
-                    Stack<Integer> b = new Stack<>();
+        int deleteHead() {
+            if (!a.empty() || !b.empty()) {
+                if (b.empty()) {
                     while (!a.empty()) {
                         b.push(a.pop());
                     }
-                    int c = b.pop();
-                    while (!b.empty()) {
-                        a.push(b.pop());
-                    }
-                    return c;
                 }
+                return b.pop();
             }
             return -1;
         }
