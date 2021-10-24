@@ -10,27 +10,55 @@ public class Offer10_1 {
      * 剑指 Offer 10- I. 斐波那契数列
      * */
     public static void main(String[] args) {
-        for (int i = 0; i < 21; i++) {
-            System.out.println(i + ":" + fib(i));
+        for (int i = 0; i < 100; i++) {//n等于93溢出
+            fib(i);
         }
-        System.out.println(fib(48));
-        System.out.println(fib(100));
+        //System.out.println(fib(11));
+        //System.out.println(fib(100));
     }
 
     private static int fib(int n) {
-        BigInteger a = new BigInteger("0");
-        BigInteger b = new BigInteger("1");
-        if (n == 0) {
-            return a.intValue();
-        } else if (n == 1) {
-            return b.intValue();
+        if (n == 0 || n == 1) {
+            return n;
         } else {
-            for (int i = 0; i < n - 1; i++) {
-                BigInteger c = a.add(b);
+            long a = 0;
+            long b = 1;
+            long c = 1000000007;
+            int m = 0;
+            long[][] longs = new long[2][2];
+            for (int i = 0; i < n-1; i++) {
+                if (b > c || m > 0) {
+                    if (longs[0][0] + longs[0][1] == 0L) {
+                        longs[0][0] = b % c;
+                        longs[0][1] = b / c;
+                        m++;
+                    } else if (longs[1][0] + longs[1][1] == 0L) {
+                        longs[1][0] = b % c;
+                        longs[1][1] = b / c;
+                        m++;
+                    } else {
+                        m++;
+                        long d = longs[0][0] + longs[1][0];
+                        long e;
+                        long f = longs[0][1] + longs[1][1];
+                        if (d >= c) {
+                            e = d - c;
+                            f++;
+                        } else {
+                            e = d;
+                        }
+                        longs[0][0] = longs[1][0];
+                        longs[0][1] = longs[1][1];
+                        longs[1][0] = e;
+                        longs[1][1] = f;
+                    }
+                }
+                long x = a + b;
                 a = b;
-                b = c;
+                b = x;
             }
-            return b.mod(new BigInteger("1000000007")).intValue();
+            System.out.println(n+":"+a+":"+b+":"+(m>2)+":"+(m > 2 ? (int) (longs[0][0]+longs[1][0]>=c?(longs[0][0]+longs[1][0]-c):longs[0][0]+longs[1][0]) : (int) (b % c)));
+            return m > 2 ? (int) (longs[0][0]+longs[1][0]>=c?(longs[0][0]+longs[1][0]-c):longs[0][0]+longs[1][0]) : (int) (b % c);
         }
     }
 }
