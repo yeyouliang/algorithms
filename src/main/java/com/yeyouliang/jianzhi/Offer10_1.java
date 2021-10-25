@@ -1,19 +1,17 @@
 package com.yeyouliang.jianzhi;
 
-import java.math.BigInteger;
-
 /**
  * Created by YYL on 2021/10/24 : 17:53.
  */
 public class Offer10_1 {
     /**
      * 剑指 Offer 10- I. 斐波那契数列
-     * */
+     */
     public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {//n等于93溢出
+        for (int i = 0; i < 101; i++) {
             fib(i);
         }
-        //System.out.println(fib(11));
+        //System.out.println(fib(100));
         //System.out.println(fib(100));
     }
 
@@ -26,7 +24,7 @@ public class Offer10_1 {
             long c = 1000000007;
             int m = 0;
             long[][] longs = new long[2][2];
-            for (int i = 0; i < n-1; i++) {
+            for (int i = 0; i < n - 1; i++) {
                 if (b > c || m > 0) {
                     if (longs[0][0] + longs[0][1] == 0L) {
                         longs[0][0] = b % c;
@@ -57,8 +55,8 @@ public class Offer10_1 {
                 a = b;
                 b = x;
             }
-            System.out.println(n+":"+a+":"+b+":"+(m>2)+":"+(m > 2 ? (int) (longs[0][0]+longs[1][0]>=c?(longs[0][0]+longs[1][0]-c):longs[0][0]+longs[1][0]) : (int) (b % c)));
-            return m > 2 ? (int) (longs[0][0]+longs[1][0]>=c?(longs[0][0]+longs[1][0]-c):longs[0][0]+longs[1][0]) : (int) (b % c);
+            System.out.println(n + ":" + a + ":" + b + ":" + (m > 2) + ":" + (m > 2 ? (int) (longs[0][0] + longs[1][0] >= c ? (longs[0][0] + longs[1][0] - c) : longs[0][0] + longs[1][0]) : (int) (b % c)));
+            return m > 2 ? (int) (longs[0][0] + longs[1][0] >= c ? (longs[0][0] + longs[1][0] - c) : longs[0][0] + longs[1][0]) : (int) (b % c);
         }
     }
 }
