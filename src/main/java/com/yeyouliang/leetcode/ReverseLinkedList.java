@@ -4,6 +4,9 @@ package com.yeyouliang.leetcode;
  * Created by YYL on 2021/9/25 : 18:08.
  */
 public class ReverseLinkedList {
+    /**
+     * LeetCode 206. 反转链表
+     * */
     public static void main(String[] args) {
         ListNode l5 = new ListNode(5);
         ListNode l4 = new ListNode(4, l5);
