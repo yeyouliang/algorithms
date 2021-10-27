@@ -1,8 +1,6 @@
 package com.yeyouliang.jianzhi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by YYL on 2021/10/27 : 8:52.
@@ -10,12 +8,16 @@ import java.util.List;
 public class Offer57 {
     /**
      * 剑指 Offer 57. 和为s的两个数字
-     * */
+     */
     public static void main(String[] args) {
         int[][][] ints = {
+                {{10, 15, 20, 22, 26, 29, 30, 31, 34, 41, 46, 47, 60}, {48}},
                 {{9}, {9}},
                 {{2}, {9}},
                 {{1, 7}, {9}},
+                {{4, 4}, {8}},
+                {{4, 5}, {8}},
+                {{5, 5}, {8}},
                 {{2, 7}, {9}},
                 {{2, 7, 11, 15}, {9}},
                 {{10, 26, 30, 31, 47, 60}, {40}},
@@ -31,20 +33,24 @@ public class Offer57 {
     private static int[] twoSum(int[] nums, int target) {
         int[] ints = new int[0];
         if (nums.length > 1) {
-            List<Integer> a = new ArrayList<>();
-            List<Integer> b = new ArrayList<>();
-            for (int num : nums) {
-                if (num < target) {
-                    int c = target - num;
-                    if (a.contains(num)) {
+            int a = 0;
+            int b = nums.length - 1;
+            while (a < b) {
+                if (nums[b] > target) {
+                    b--;
+                } else {
+                    int c = nums[a];
+                    int d = nums[b];
+                    int e = c + d;
+                    if (e == target) {
                         ints = new int[2];
-                        ints[0] = num;
-                        ints[1] = c;
+                        ints[0] = c;
+                        ints[1] = d;
                         break;
+                    } else if (e > target) {
+                        b--;
                     } else {
-                        if (!a.contains(c)){
-                            a.add(c);
-                        }
+                        a++;
                     }
                 }
             }
