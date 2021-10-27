@@ -7,11 +7,15 @@ import java.util.List;
  * Created by YYL on 2021/10/27 : 10:15.
  */
 public class Offer57_1 {
+    /**
+     * 剑指 Offer 57 - II. 和为s的连续正数序列
+     */
     public static void main(String[] args) {
-        int[] ints = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] ints = {500000,15, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         for (int anInt : ints) {
             int[][] a = findContinuousSequence(anInt);
             System.out.println(anInt + ":" + a.length);
+            System.out.println("----------------------------");
         }
     }
 
@@ -25,7 +29,7 @@ public class Offer57_1 {
                 a = target / 2 + 1;
             }
             List<List<Integer>> lli = new ArrayList<>();
-            for (int i = a; i > 0; i--) {
+            for (int i = 1; i < a; i++) {
                 List<Integer> list = new ArrayList<>();
                 int b = target;
                 int c = i;
@@ -38,14 +42,25 @@ public class Offer57_1 {
                         list.clear();
                         break;
                     }
-                    c--;
-                    if (c == 0) {
+                    c++;
+                    if (c > a) {
                         list.clear();
                         break;
                     }
                 }
                 if (list.size() > 1) {
                     lli.add(list);
+                }
+            }
+            if (lli.size() > 0) {
+                ints = new int[lli.size()][];
+                for (int i = 0; i < lli.size(); i++) {
+                    List<Integer> list = lli.get(i);
+                    int[] d = new int[list.size()];
+                    for (int j = 0; j < list.size(); j++) {
+                        d[j] = list.get(j);
+                    }
+                    ints[i] = d;
                 }
             }
         }
