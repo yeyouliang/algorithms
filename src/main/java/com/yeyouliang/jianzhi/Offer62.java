@@ -10,9 +10,10 @@ import java.util.List;
 public class Offer62 {
     /**
      * 剑指 Offer 62. 圆圈中最后剩下的数字
-     * */
+     */
     public static void main(String[] args) {
         int[][] ints = {
+                {5, 3},
                 {2, 1},
                 {2, 2},
                 {2, 3},
@@ -44,39 +45,29 @@ public class Offer62 {
         } else if (m == 1) {
             return n - 1;
         } else {
-            int b = m % n;
-            int a = b == 0 ? n - 1 : b - 1;
             List<Integer> list = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                list.add(i);
+            }
+            int a = m % n;
+            int b = a == 0 ? n - 1 : a - 1;
             while (true) {
-                if (list.size() == n - 1) {
+                int c;
+                if (b == list.size() - 1) {
+                    c = 0;
+                } else {
+                    c = b;
+                }
+                list.remove(b);
+                if (list.size() == 1) {
                     break;
                 }
-                list.add(a);
-                while (true) {
-                    if (a == n - 1) {
-                        a = 0;
-                    } else {
-                        a++;
-                    }
-                    if (!list.contains(a)) {
-                        int d = m - 1;
-                        int e = a;
-                        while (d > 0) {
-                            if (e == n - 1) {
-                                e = 0;
-                            } else {
-                                e++;
-                            }
-                            if (!list.contains(e)) {
-                                d--;
-                            }
-                        }
-                        a = e;
-                        break;
-                    }
-                }
+                a = m % list.size();
+                int e = a == 0 ? list.size() - 1 : a - 1;
+                int d = e + c;
+                b = d > list.size() - 1 ? d - list.size() : d;
             }
-            return a;
+            return list.get(0);
         }
     }
 }
