@@ -8,9 +8,10 @@ import java.util.Arrays;
 public class Offer_2_001 {
     /**
      * 剑指 Offer II 001. 整数除法
-     * */
+     */
     public static void main(String[] args) {
         int[][] ints = {
+                {-2147483648, -1},
                 {7, -3},
                 {0, 1},
                 {1, 1},
@@ -59,16 +60,18 @@ public class Offer_2_001 {
         if (a == 0) {
             return 0;
         } else {
-            long c = Math.abs(a);
-            long d = Math.abs(b);
+            boolean zheng = (a < 0 && b < 0) || (a > 0 && b > 0);
+            long c = Math.abs((long) a);
+            long d = Math.abs((long) b);
             if (c < d) {
                 return 0;
             } else if (a == b) {
                 return 1;
             } else if (c == d) {
                 return -1;
+            } else if (d == 1L) {
+                return zheng ? (a == Integer.MIN_VALUE ? Integer.MAX_VALUE : (a < 0 ? 0 - a : a)) : (a < 0 ? a : 0 - a);
             } else {
-                boolean zheng = (a < 0 && b < 0) || (a > 0 && b > 0);
                 long e = d;
                 int g = 1;
                 while (true) {
