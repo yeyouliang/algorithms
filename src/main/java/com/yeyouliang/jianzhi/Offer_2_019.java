@@ -9,6 +9,7 @@ public class Offer_2_019 {
      */
     public static void main(String[] args) {
         String[] strings = {
+                "abc",
                 "ebcbbececabbacecbbcbe",
                 "xabccba",
                 "xabcba",
@@ -58,26 +59,39 @@ public class Offer_2_019 {
                         if (a + 1 == b) {
                             return true;
                         }
-                        int c;
-                        int d;
+                        boolean e = true;
                         if (s.charAt(a) == s.charAt(b - 1)) {
-                            c = a;
-                            d = b - 1;
-                        } else if (s.charAt(a + 1) == s.charAt(b)) {
-                            c = a + 1;
-                            d = b;
-                        } else {
-                            return false;
-                        }
-                        while (c < d) {
-                            if (s.charAt(c) == s.charAt(d)) {
-                                c++;
-                                d--;
-                            } else {
-                                return false;
+                            int c = a;
+                            int d = b - 1;
+                            while (c < d) {
+                                if (s.charAt(c) == s.charAt(d)) {
+                                    c++;
+                                    d--;
+                                } else {
+                                    e = false;
+                                    break;
+                                }
                             }
+                        }else {
+                            e=false;
                         }
-                        return true;
+                        boolean f = true;
+                        if (s.charAt(a + 1) == s.charAt(b)) {
+                            int c = a + 1;
+                            int d = b;
+                            while (c < d) {
+                                if (s.charAt(c) == s.charAt(d)) {
+                                    c++;
+                                    d--;
+                                } else {
+                                    f = false;
+                                    break;
+                                }
+                            }
+                        }else {
+                            f=false;
+                        }
+                        return e || f;
                     }
                 }
                 return true;
