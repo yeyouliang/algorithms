@@ -18,6 +18,7 @@ public class Offer_2_056 {
         TreeNode t6 = new TreeNode(6, t5, t7);
         TreeNode t10 = new TreeNode(10, t9, t11);
         TreeNode t8 = new TreeNode(8, t6, t10);
+
         System.out.println(findTarget(t8, 10));
         System.out.println(findTarget(t8, 11));
         System.out.println(findTarget(t8, 12));
@@ -31,46 +32,30 @@ public class Offer_2_056 {
         System.out.println(findTarget(t8, 20));
         System.out.println(findTarget(t8, 21));
         System.out.println(findTarget(t8, 22));
+
         TreeNode t1 = new TreeNode(1);
-        System.out.println(findTarget(t1,2));
+        System.out.println(findTarget(t1, 2));
     }
 
     private static boolean findTarget(TreeNode root, int k) {
-        List<TreeNode> a = new ArrayList<>();
-        List<TreeNode> b = new ArrayList<>();
-        List<Integer> d = new ArrayList<>();
-        if (root != null) {
-            b.add(root);
-            while (true) {
-                int size = b.size();
-                for (TreeNode treeNode : b) {
-                    if (!a.contains(treeNode)) {
-                        if (d.contains(treeNode.val)) {
-                            return true;
-                        }else {
-                            d.add(k - treeNode.val);
-                        }
-                        a.add(treeNode);
-                        int index = b.indexOf(treeNode);
-                        List<TreeNode> c = new ArrayList<>(b);
-                        if (treeNode.right != null) {
-                            c.add(index + 1, treeNode.right);
-                        }
-                        if (treeNode.left != null) {
-                            c.add(index, treeNode.left);
-                        }
-                        if (b.size() != c.size()) {
-                            b = c;
-                            break;
-                        }
-                    }
-                }
-                if (size == b.size()) {
-                    break;
-                }
+        return find(root, k, new ArrayList<>());
+    }
+
+    private static boolean find(TreeNode root, int k, List<Integer> d) {
+        if (d.contains(root.val)) {
+            return true;
+        } else {
+            d.add(k - root.val);
+            boolean a = false;
+            if (root.left != null) {
+                a = find(root.left, k, d);
             }
+            boolean b = false;
+            if (root.right != null) {
+                b = find(root.right, k, d);
+            }
+            return a || b;
         }
-        return false;
     }
 
     private static class TreeNode {
