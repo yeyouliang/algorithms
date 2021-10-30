@@ -27,31 +27,41 @@ public class Offer_2_052 {
     private static TreeNode increasingBST(TreeNode root) {
         List<TreeNode> a = new ArrayList<>();
         List<TreeNode> b = new ArrayList<>();
-        a.add(root);
-        b.add(root);
-        while (!b.isEmpty()) {
-            List<TreeNode> c = new ArrayList<>();
-            for (TreeNode treeNode : b) {
-                if (treeNode.left != null) {
-                    a.add(treeNode.left);
-                    c.add(treeNode.left);
+        if (root != null) {
+            b.add(root);
+            while (true) {
+                int size = b.size();
+                for (TreeNode treeNode : b) {
+                    if (!a.contains(treeNode)) {
+                        a.add(treeNode);
+                        int index = b.indexOf(treeNode);
+                        List<TreeNode> c = new ArrayList<>(b);
+                        if (treeNode.right != null) {
+                            c.add(index + 1, treeNode.right);
+                        }
+                        if (treeNode.left != null) {
+                            c.add(index, treeNode.left);
+                        }
+                        if (b.size() != c.size()) {
+                            b = c;
+                            break;
+                        }
+                    }
                 }
-                if (treeNode.right != null) {
-                    a.add(treeNode.right);
-                    c.add(treeNode.right);
+                if (size == b.size()) {
+                    break;
                 }
             }
-            b = c;
         }
-        a.sort((o1, o2) -> Integer.valueOf(o1.val).compareTo(o2.val));
-        for (int i = 0; i < a.size() - 1; i++) {
-            TreeNode e = a.get(i);
+        for (int i = 0; i < b.size() - 1; i++) {
+            TreeNode e = b.get(i);
             e.left = null;
-            TreeNode f = a.get(i + 1);
+            TreeNode f = b.get(i + 1);
             f.left = null;
+            f.right=null;
             e.right = f;
         }
-        return a.get(0);
+        return b.get(0);
     }
 
     private static class TreeNode {
