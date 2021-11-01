@@ -12,6 +12,7 @@ public class Offer_2_075 {
     public static void main(String[] args) {
         int[][][] ints = {
                 {{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}, {2, 1, 4, 3, 9, 6}},
+                {{28,6,22,8,44,17}, {22,28,8,6}},
         };
         for (int[][] string : ints) {
             System.out.println(Arrays.toString(string[0]));
@@ -45,6 +46,7 @@ public class Offer_2_075 {
                     arr1[index++] = key;
                 }
             }
+            Collections.sort(list);
             for (Integer aList : list) {
                 arr1[index++] = aList;
             }
