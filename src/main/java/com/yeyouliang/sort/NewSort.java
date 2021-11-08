@@ -11,6 +11,8 @@ public class NewSort {
 
     public static void main(String[] args) {
         int[][] ints = {
+                {4, 1, 9, 3, 7, 8, 5, 6, 2},
+                {4, 6, 8, 5, 9},
                 {1},
                 {1, 2},
                 {1, 2, 3},
@@ -54,7 +56,77 @@ public class NewSort {
                 }
                 b++;
             }
-            System.out.println(a.size());
+            int d = a.size() / 2 + 1;
+            while (true) {
+                if (d * 2 + 1 < a.size()) {
+                    break;
+                } else {
+                    d--;
+                }
+            }
+            int e = d;
+            while (d >= 0) {
+                TreeNode f = a.get(d);
+                TreeNode g = f.left;
+                TreeNode h = f.right;
+                boolean i = false;
+                if (h != null) {
+                    if (f.val < h.val) {
+                        int temp = f.val;
+                        f.val = h.val;
+                        h.val = temp;
+                        i = true;
+                    }
+                }
+                if (g != null) {
+                    if (f.val < g.val) {
+                        int temp = f.val;
+                        f.val = g.val;
+                        g.val = temp;
+                        i = true;
+                    }
+                }
+                if (i) {
+                    d = e;
+                } else {
+                    d--;
+                }
+            }
+            int j = a.size() - 1;
+            for (int i = j; i >= 0; i--) {
+                ints[i] = a.get(0).val;
+                a.get(0).val = a.get(i).val;
+                a.set(i, null);
+                int k = 0;
+                while (true) {
+                    if (k * 2 + 1 < i) {
+                        TreeNode l = a.get(k);
+                        TreeNode m = a.get(k * 2 + 1);
+                        if (l.val < m.val) {
+                            if (k * 2 + 2 < i) {
+                                TreeNode n = a.get(k * 2 + 2);
+                                if (m.val > n.val) {
+                                    int temp = m.val;
+                                    m.val = l.val;
+                                    l.val = temp;
+                                } else {
+                                    int temp = n.val;
+                                    n.val = l.val;
+                                    l.val = temp;
+                                }
+                            } else {
+                                int temp = l.val;
+                                l.val = m.val;
+                                m.val = temp;
+                                break;
+                            }
+                        }
+                        k++;
+                    } else {
+                        break;
+                    }
+                }
+            }
         }
         return ints;
     }
