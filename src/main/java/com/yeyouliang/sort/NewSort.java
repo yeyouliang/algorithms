@@ -11,6 +11,9 @@ public class NewSort {
 
     public static void main(String[] args) {
         int[][] ints = {
+                {8, 9, 1, 7, 2, 3, 5, 4, 6, 0},
+                /*{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48},
+                {3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48, 100, 10000},
                 {4, 1, 9, 3, 7, 8, 5, 6, 2},
                 {4, 6, 8, 5, 9},
                 {1},
@@ -28,11 +31,132 @@ public class NewSort {
                 {2, 5, 3, 1, 4},
                 {1, 2, 3, 3},
                 {2, 1, 2, 5, 3, 2},
-                {5, 1, 5, 2, 5, 3, 5, 4},
+                {5, 1, 5, 2, 5, 3, 5, 4},*/
         };
         for (int[] anInt : ints) {
-            System.out.println(Arrays.toString(anInt) + ":" + Arrays.toString(heap(anInt)));
+            System.out.println(Arrays.toString(anInt) + ":" + Arrays.toString(shell(anInt)));
         }
+    }
+
+    private static int[] shell(int[] ints) {
+        if (ints != null && ints.length > 1) {
+            int a = ints.length / 2;
+            while (a > 0) {
+                for (int i = ints.length - 1; i > 0; i--) {
+                    int b = i;
+                    int c = i - a;
+                    boolean d = true;
+                    while (c >= 0) {
+                        if (ints[c] > ints[b]) {
+                            int temp = ints[c];
+                            ints[c] = ints[b];
+                            ints[b] = temp;
+                        }
+                        b = c;
+                        c -= a;
+                        d = false;
+                    }
+                    if (d) {
+                        break;
+                    }
+                }
+                a /= 2;
+                System.out.println(Arrays.toString(ints));
+            }
+        }
+        return ints;
+    }
+
+    private static int[] jishu(int[] ints) {
+        if (ints != null && ints.length > 1) {
+            int a = 0;
+            int b = 0;
+            do {
+                List<Integer> l0 = new ArrayList<>();
+                List<Integer> l1 = new ArrayList<>();
+                List<Integer> l2 = new ArrayList<>();
+                List<Integer> l3 = new ArrayList<>();
+                List<Integer> l4 = new ArrayList<>();
+                List<Integer> l5 = new ArrayList<>();
+                List<Integer> l6 = new ArrayList<>();
+                List<Integer> l7 = new ArrayList<>();
+                List<Integer> l8 = new ArrayList<>();
+                List<Integer> l9 = new ArrayList<>();
+                for (int anInt : ints) {
+                    String c = String.valueOf(anInt);
+                    b = Math.max(c.length(), b);
+                    if (c.length() > a) {
+                        switch (c.substring(c.length() - 1 - a, c.length() - 1 - a + 1)) {
+                            case "0":
+                                l0.add(anInt);
+                                break;
+                            case "1":
+                                l1.add(anInt);
+                                break;
+                            case "2":
+                                l2.add(anInt);
+                                break;
+                            case "3":
+                                l3.add(anInt);
+                                break;
+                            case "4":
+                                l4.add(anInt);
+                                break;
+                            case "5":
+                                l5.add(anInt);
+                                break;
+                            case "6":
+                                l6.add(anInt);
+                                break;
+                            case "7":
+                                l7.add(anInt);
+                                break;
+                            case "8":
+                                l8.add(anInt);
+                                break;
+                            case "9":
+                                l9.add(anInt);
+                                break;
+                        }
+                    } else {
+                        l0.add(anInt);
+                    }
+                }
+                int d = 0;
+                for (Integer integer : l0) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l1) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l2) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l3) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l4) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l5) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l6) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l7) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l8) {
+                    ints[d++] = integer;
+                }
+                for (Integer integer : l9) {
+                    ints[d++] = integer;
+                }
+                a++;
+            } while (a < b);
+        }
+        return ints;
     }
 
     private static int[] heap(int[] ints) {
@@ -119,6 +243,21 @@ public class NewSort {
                                 l.val = m.val;
                                 m.val = temp;
                                 break;
+                            }
+                        } else {
+                            if (k * 2 + 2 < i) {
+                                TreeNode n = a.get(k * 2 + 2);
+                                if (l.val < n.val) {
+                                    if (m.val > n.val) {
+                                        int temp = m.val;
+                                        m.val = l.val;
+                                        l.val = temp;
+                                    } else {
+                                        int temp = n.val;
+                                        n.val = l.val;
+                                        l.val = temp;
+                                    }
+                                }
                             }
                         }
                         k++;
