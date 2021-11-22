@@ -38,6 +38,9 @@ public class NewSort {
         }
     }
 
+    /**
+     * 归并排序
+     * */
     private static int[] guibing(int[] ints) {
         if (ints != null && ints.length > 1) {
             if (ints.length == 2) {
@@ -81,6 +84,9 @@ public class NewSort {
         return ints;
     }
 
+    /**
+     * 希尔排序
+     */
     private static int[] shell(int[] ints) {
         if (ints != null && ints.length > 1) {
             int a = ints.length / 2;
@@ -110,6 +116,9 @@ public class NewSort {
         return ints;
     }
 
+    /**
+     * 基数排序
+     * */
     private static int[] jishu(int[] ints) {
         if (ints != null && ints.length > 1) {
             int a = 0;
@@ -202,6 +211,9 @@ public class NewSort {
         return ints;
     }
 
+    /**
+     * 堆排序
+     * */
     private static int[] heap(int[] ints) {
         if (ints != null && ints.length > 1) {
             List<TreeNode> a = new ArrayList<>();
@@ -339,6 +351,9 @@ public class NewSort {
         }
     }
 
+    /**
+     * 冒泡排序
+     * */
     private static int[] maopao(int[] ints) {
         if (ints != null && ints.length > 1) {
             for (int i = ints.length - 1; i > 0; i--) {
@@ -354,6 +369,9 @@ public class NewSort {
         return ints;
     }
 
+    /**
+     * 快速排序
+     * */
     private static int[] kuaipai(int[] ints) {
         if (ints != null && ints.length > 1) {
             int[] a = new int[ints.length];
@@ -380,6 +398,9 @@ public class NewSort {
         return ints;
     }
 
+    /**
+     * 直接插入排序
+     * */
     private static int[] zhicha(int[] ints) {
         if (ints != null && ints.length > 1) {
             for (int i = 1; i < ints.length; i++) {
@@ -397,6 +418,9 @@ public class NewSort {
         return ints;
     }
 
+    /**
+     * 选择排序
+     * */
     private static int[] selection(int[] ints) {
         if (ints != null && ints.length > 1) {
             for (int i = 0; i < ints.length - 1; i++) {
