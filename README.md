@@ -1,20 +1,14 @@
-# algorithms
-# 一级标题<br>
-## 二级标题<br>
-### 三级标题<br>
-#### 四级标题<br>
-##### 五级标题<br>
-###### 六级标题<br>
+# 算法
 
-# LeetCode题目解答
-[第一部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/leetcode "leetcode")<br>
-[第二部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/jianzhi "leetcode")<br>
-[第三部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/lcci "leetcode")<br>
+## LeetCode题目解答
+[第一部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/leetcode "Leetcode")<br>
+[第二部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/jianzhi "Leetcode")<br>
+[第三部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/lcci "Leetcode")<br>
 
-# 蓝桥杯题目解答
+## 蓝桥杯题目解答
 [第一部分](https://github.com/yeyouliang/algorithms/tree/master/src/main/java/com/yeyouliang/lanqiao "蓝桥杯")<br>
 
-# 二叉树
+## 二叉树
 [二叉树的前序遍历](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/leetcode/BinaryTreePreorderTraversal.java )<br>
 [二叉树的中序遍历](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/leetcode/BinaryTreeInorderTraversal.java )<br>
 [二叉树的后序遍历](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/leetcode/BinaryTreePostorderTraversal.java )<br>
@@ -29,7 +23,7 @@
 [判断二叉树是否是合法的二叉查找树(BST)](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/tree/IsBst.java )<br>
 [判断二叉树是否是完全二叉树](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/tree/IsComplete.java )<br>
 
-# 排序算法
+## 排序算法
 [冒泡排序](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/sort/BubbleSort.java )<br>
 [选择排序](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/sort/SelectionSort.java )<br>
 [插入排序](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/sort/InsertionSort.java )<br>
@@ -39,7 +33,7 @@
 [堆排序](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/sort/HeapSort.java )<br>
 [基数排序](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/sort/RadixSort.java )<br>
 
-# 其他
+## 其他
 [使用队列表示栈](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/QueueUsingStacks.java )<br>
 [数组中连续元素的和](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/ArraySum.java )<br>
 [子数组之和的最大值](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/MaxSum.java )<br>
@@ -59,9 +53,11 @@
 [兔子繁殖](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T12.java )<br>
 [完数](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T14.java )<br>
 [自由落下的球](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T15.java )<br>
-
-
-
+[乒乓球比赛球员对阵名单](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T18.java )<br>
+[求分数序列的前20项之和](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T19.java )<br>
+[将一个数插入已排序数组](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T25.java )<br>
+[猴子分桃](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T27.java )<br>
+[计算字符串中子串出现的次数](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/ti/T28.java )<br>
 [最大公约数](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/others/MaxGongYue.java )<br>
 [最小公倍数](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/others/MinGongBei.java )<br>
 [背包问题](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/others/KnapsackProblem.java )<br>
@@ -75,15 +71,3 @@
 [找出数组中第二大的数](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/array/FindSecondMax.java )<br>
 [寻找数组中的最小值与最大值](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/array/FindMax.java )<br>
 [计算某日期是这一年的第几天](https://github.com/yeyouliang/algorithms/blob/master/src/main/java/com/yeyouliang/array/DiJiTian.java )<br>
-
-
-
-
-
-
-
-
-
-
-
-
