@@ -17,8 +17,8 @@ public class BuildTrain {
 
     public static void main(String[] args) throws InterruptedException {
         BuildTrain bhc = new BuildTrain();
-        Player tom = new Player(bhc, "Tom");
-        Player jenny = new Player(bhc, "Jenny");
+        Player tom = new Player(bhc, "TOM");
+        Player jenny = new Player(bhc, "JERRY");
         tom.start();
         Thread.sleep(750);
         jenny.start();
@@ -38,7 +38,8 @@ public class BuildTrain {
         }
 
         List<String> init() {
-            List<String> stringList = Stream.of("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K").collect(Collectors.toList());
+            //List<String> stringList = Stream.of("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K").collect(Collectors.toList());
+            List<String> stringList = Stream.of("2", "3", "4", "5", "6").collect(Collectors.toList());
             return xi(stringList);
         }
 
@@ -71,8 +72,8 @@ public class BuildTrain {
                         bhc.object.notify();
                         break;
                     } else {
-                        System.out.println(this.getName() + "开始出牌," + list + "," + bhc.pai);
-                        int d=-1;
+                        System.out.println(this.getName() + "开始出牌，自己手上的牌：" + list + "，桌面上的牌：" + bhc.pai);
+                        int d = -1;
                         while (true) {
                             if (list.isEmpty()) {
                                 System.out.println(this.getName() + " 输");
@@ -87,13 +88,12 @@ public class BuildTrain {
                                 boolean b = true;
                                 if (p.isEmpty()) {
                                     p.add(first);
-                                    d=-1;
+                                    d = -1;
                                 } else {
                                     int index = p.indexOf(first);
                                     if (index != -1) {
                                         List<String> shou = new ArrayList<>(p.subList(index, p.size()));
                                         List<String> c = new ArrayList<>(p.subList(0, index));
-                                        System.out.println(this.getName() + " 收 : " + shou);
                                         shou.add(first);
                                         shou = shou(shou);
                                         System.out.println(this.getName() + " 收 : " + shou);
@@ -102,25 +102,26 @@ public class BuildTrain {
                                         first = ls.get(0);
                                         if (c.contains(first)) {
                                             b = false;
-                                        }else {
-                                            d=1;
+                                        } else {
+                                            d = 1;
                                         }
-                                        p=new ArrayList<>(c);
+                                        p = new ArrayList<>(c);
                                     } else {
                                         p.add(first);
-                                        d=-1;
+                                        d = -1;
                                     }
                                 }
                                 list = ls;
                                 bhc.pai = p;
                                 if (b) {
-                                    if (d==-1){
+                                    if (d == -1) {
                                         break;
                                     }
                                 }
                             }
                         }
-                        System.out.println(this.getName() + "出牌完毕," + list + "," + bhc.pai);
+                        System.out.println(this.getName() + "结束出牌，自己手上的牌：" + list + "，桌面上的牌：" + bhc.pai);
+                        System.out.println("------------------------------------------------------------------------------------------------");
                         bhc.object.notify();
                         if (bhc.falg) {
                             break;
