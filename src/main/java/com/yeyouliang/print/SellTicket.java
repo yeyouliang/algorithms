@@ -18,7 +18,7 @@ public class SellTicket {
         molly.start();
     }
 
-    private synchronized static int sell() {
+    private static int sell() {
         if (no > 100) {
             return -1;
         } else {
@@ -35,15 +35,17 @@ public class SellTicket {
         @Override
         public void run() {
             while (true) {
-                int ticketNo = sell();
-                if (ticketNo == -1) {
-                    break;
-                } else {
-                    System.out.println(Thread.currentThread().getName() + "：我卖出第" + ticketNo + "张票");
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                synchronized (SellTicket.class) {
+                    int ticketNo = sell();
+                    if (ticketNo == -1) {
+                        break;
+                    } else {
+                        System.out.println(Thread.currentThread().getName() + "：我卖出第" + ticketNo + "张票");
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
