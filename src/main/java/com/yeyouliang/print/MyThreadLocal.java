@@ -5,7 +5,7 @@ package com.yeyouliang.print;
  */
 public class MyThreadLocal {
 
-    private static int count = 0;
+    private static ThreadLocal<Integer> count = ThreadLocal.withInitial(() -> 0);
 
     public static void main(String[] args) {
         MyThread myThread = new MyThread();
@@ -23,9 +23,9 @@ public class MyThreadLocal {
         @Override
         public void run() {
             while (true) {
-                if (count < 100) {
-                    System.out.println(Thread.currentThread().getName() + ":" + count);
-                    count++;
+                if (count.get() < 100) {
+                    System.out.println(Thread.currentThread().getName() + ":" + count.get());
+                    count.set(count.get() + 1);
                 } else {
                     break;
                 }
